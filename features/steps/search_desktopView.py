@@ -8,7 +8,7 @@ from features.pages.CFAHomePageObjects import *
 from applitools.selenium import Eyes, Target
 import applitools.selenium
 
-
+#Work in progress -- BB 3/29/2020
 use_step_matcher("re")
 
 
@@ -191,8 +191,8 @@ def step_impl(context):
 def step_impl(context):
     eyes.open(context.browser, "CFAHome", "Search Buckets - No filters selected")
     eyes.match_level = MatchLevel.LAYOUT
-    eyes.force_full_page_screenshot = True
-    eyes.check(context.browser.current_url + " Search P", Target.window())
+    #eyes.force_full_page_screenshot = True
+    eyes.check(context.browser.current_url + " Verify Search Page", Target.window())
 
     # # End the test.
     eyes.close()
@@ -200,8 +200,6 @@ def step_impl(context):
 
 @step("I navigate to the search Page")
 def step_impl(context):
-    # eyes.check(context.browser.current_url + " Navigating to Search Page", Target.window())
-
     context.browser.find_element_by_css_selector('#searchSection > img.search-icon').click()
     context.browser.implicitly_wait(500)
 
@@ -225,10 +223,7 @@ def step_impl(context):
             if context.browser.find_element_by_css_selector(
                     'div:nth-child(2) > div.filter-block > label:nth-child(3) > span'):
                 print("All Exist")
-                # eyes.check(context.browser.current_url + " Left Menu is visible", Target.window())
-
                 # print(context.browser.find_element_by_css_selector(Locators.CATEGORYTYPE).text)
-
     else:
         # eyes.check(context.browser.current_url + " Left Menu is not visible", Target.window())
         print("something is missing")
@@ -293,7 +288,6 @@ def step_impl(context):
     eyes.check(context.browser.current_url + " Dept Field", Target.window())
 
     eyes.close()
-    # print(Locators.DEPT_TYPE)
     if context.browser.find_element_by_css_selector(Locators.DEPT_TYPE).text == "Department":
         print("Right Page")
 
@@ -309,15 +303,7 @@ def step_impl(context):
 @step('I have selected a "Location Type" filter')
 def step_impl(context):
     context.browser.find_element_by_xpath('//span[contains(@class, "filter-text") and text() ="Dwarf House " ]').click()
-
-    # print(filterType)
-    # listFilter =[]
-    # for i in filterType:
-    #    listFilter.append(i.text)
-
-    # context.browser.find_elements_by_css_selector(filterType[3]).click()
-
-    print(u'STEP: And  I have selected a "Location Type" filter')
+    print('STEP: And  I have selected a "Location Type" filter')
 
 
 @then('I should see the "Location Type" filter selected')
@@ -349,11 +335,7 @@ def step_impl(context):
 @step("I have selected the 'Resource' search Bucket")
 def step_impl(context):
     context.browser.find_element_by_xpath('/html/body/header/div/div[5]/a').click()
-
-    """
-    :type context: behave.runner.Context
-    """
-    print(u'STEP: And  I have selected the \'Resource\' search Bucket')
+    print('STEP: And  I have selected the \'Resource\' search Bucket')
 
 
 @step('I have selected a "Resource Type" filter')

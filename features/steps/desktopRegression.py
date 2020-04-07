@@ -13,7 +13,7 @@ def step_impl(context, items):
         context.browser.find_element_by_css_selector('#txtSearch').send_keys(items)
         context.browser.find_element_by_css_selector('#searchSection > ul > li > a').click()
     #print(items)
-    print(u'STEP: When I search for <items>')
+    print(u'STEP: When I search for (?P<items>.+)')
 
 
 @then("I should see (?P<items>.+) in the search results")
@@ -32,7 +32,7 @@ def step_impl(context, items):
 
     # # End the test.
     eyes.close()
-    print(u'STEP: Then I should see <items> in the search results')
+    print(u'STEP: Then I should see (?P<items>.+) in the search results')
 
 
 @when("I click logout")
