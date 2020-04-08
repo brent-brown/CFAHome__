@@ -20,6 +20,7 @@ SAUCE_USERNAME = os.environ['SAUCE_USERNAME']
 SAUCE_ACCESS_KEY = os.environ['SAUCE_ACCESS_KEY']
 
 
+
 jenkins_capabilities = {
   'browserName':os.environ['BROWSER'],
   'platform':os.environ['PLATFORM'],
@@ -27,6 +28,12 @@ jenkins_capabilities = {
   'name':'CFAHome -Automation W/ '+ os.environ['BROWSER'] + ' using ' + os.environ['PLATFORM']
 }
 
+capabilities = {
+  'browserName':'Chrome',
+  'platform':'OS X 10.11',
+  'version':'latest',
+  'name':'CFAHome -Search - Chrome (MAC OSX 10.11)'
+}
 
 
 #print(capabilities['browserName'])
@@ -57,19 +64,19 @@ def before_scenario(context, scenario):
     #context.browser.get("https://int.portal.cfahome.com/")
     context.browser.implicitly_wait(500)
 
-    # theUser = context.browser.find_element_by_xpath('//*[@id="okta-signin-username"]')
-    # theUser.clear()
-    #
-    # enterUN = os.environ['CFAUSER_ADMIN']
-    # theUser.send_keys(os.environ['CFAUSER_ADMIN'])
-    #
-    # passsword = context.browser.find_element_by_css_selector("#okta-signin-password")
-    # passsword.clear()
-    # enterPW = os.environ['CFAPW_ADMIN']
-    # passsword.send_keys(os.environ['CFAPW_ADMIN'])
-    #
-    # context.browser.find_element_by_css_selector("#okta-signin-submit").click()
-    # context.browser.implicitly_wait(200)
+    theUser = context.browser.find_element_by_xpath('//*[@id="okta-signin-username"]')
+    theUser.clear()
+
+    enterUN = os.environ['CFAUSER_ADMIN']
+    theUser.send_keys(os.environ['CFAUSER_ADMIN'])
+
+    passsword = context.browser.find_element_by_css_selector("#okta-signin-password")
+    passsword.clear()
+    enterPW = os.environ['CFAPW_ADMIN']
+    passsword.send_keys(os.environ['CFAPW_ADMIN'])
+
+    context.browser.find_element_by_css_selector("#okta-signin-submit").click()
+    context.browser.implicitly_wait(200)
 
 
 
